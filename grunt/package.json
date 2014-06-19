@@ -1,0 +1,17 @@
+{
+  "name": "Codepen",
+  "version": "0.1.0",
+  "description": "A pen by Nicklas Sandell",
+  "main": "gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nicklas Sandell",
+  "devDependencies": {
+    "grunt": "~0.4.3",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-autoprefixer": "~0.7.2",
+    "grunt-contrib-jade": "~0.11.0",
+    "grunt-contrib-compass": "~0.8.0"
+  }
+}

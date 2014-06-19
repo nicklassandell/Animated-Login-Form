@@ -1,0 +1,18 @@
+doctype html
+html(lang='en')
+	head
+		title A Pen by Nicklas Sandell
+		link(rel='stylesheet' type='text/css' media='all' href='css/style.css')
+	body
+		.window
+			.input-row
+				label.label.fadeIn Username
+				input.input.fadeIn.delay1#username(type="text" data-fill="pineapple")
+			.input-row
+				label.label.fadeIn.delay2 Password
+				input.input.fadeIn.delay3#password(type="password" data-fill="hackmeplease")
+			.input-row
+				button.button.fadeIn.delay4#submit Login
+
+		script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js')
+		script(src='js/script.js')
