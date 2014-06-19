@@ -2,16 +2,35 @@
 
 jQuery(document).ready(function($) {
 
-	$('a').on('click', function(e) {
-		e.preventDefault();
-	});
+	initAnimation();
+	$('.trigger-anim-replay').on('click', resetAnimation);
 
-	instruct('fill #username then fill #password then press #submit', {
-		startDelay: 3*1000,
-		complete: function() {
-			console.log('all done baby!');
-		}
-	});
+	function initAnimation() {
+		instruct('fill #username then fill #password then press #submit', {
+			startDelay: 3*1000,
+			complete: function() {
+				$('#submit').addClass('loading');
+				setTimeout(function() {
+					$('#window').addClass('flip');
+				}, 1000);
+			}
+		});
+	}
+
+	function resetAnimation() {
+		var win = $('#window');
+
+		// Clone and re-create window element
+		// to trigger animation restart
+		win.removeClass('flip');
+		win.before(win.clone(true)).remove();
+
+		// Reset loading state on buttons
+		$('.button.loading').removeClass('loading');
+
+		// Restart animation
+		initAnimation();
+	}
 
 });
 
@@ -61,8 +80,8 @@ jQuery(document).ready(function($) {
 					// Empty input
 					target.val('');
 
-					// Focus input
-					target.trigger('focus');
+					// Add focus class
+					target.addClass('focus');
 
 					// Wait a keystroke after focus
 					setTimeout(function() {
@@ -72,7 +91,7 @@ jQuery(document).ready(function($) {
 
 							// Last letter, let's run the callback
 							if(letters.length < 1) {
-								target.trigger('blur');
+								target.removeClass('focus');
 								setTimeout(callback, instr.getPressInterval());
 							} else {
 								setTimeout(pressFunc, instr.getPressInterval());

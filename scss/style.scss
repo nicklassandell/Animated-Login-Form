@@ -1,5 +1,5 @@
 
-//@import url(http://fonts.googleapis.com/css?family=Open+Sans:600,300,100);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:600,300,100);
 //@import url(http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
 
 
@@ -14,28 +14,73 @@ html, body {
 body {
 	@include background-image(radial-gradient(ellipse closest-side, #FFFFFF, #D4E2AF));
 	@include perspective(1000px);
+	font-family: 'Open Sans';
+	font-weight: 300;
 }
 
 
 $global-radius: 3px;
 
 
-.window {
+$window-padding: 60px;
+#window {
 	position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
 	margin: auto;
-	padding: 40px;
+	padding: $window-padding;
+	height: 350px;
+	width: 450px;
+	color: #FFF;
 	-webkit-animation: 1.5s window ease-in-out;
+	@include transition-duration(.5s);
 	@include background-image(linear-gradient(bottom, #444, #333));
 	@include border-radius($global-radius*2);
 	@include transform-style(preserve-3d);
 
-	// I want to end with these values
-	height: 310px;
-	width: 500px;
+	&.flip {
+		height: 460px;
+		width: 350px;
+		@include transform(rotateX(180deg));
+
+		.back {
+			opacity: 1;
+		}
+	}
+
+	.front, .back {
+		@include backface-visibility(hidden);
+	}
+	.front {
+		@include transform(translateZ(0)); // To enable backface-visibility
+	}
+	.back {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		padding: $window-padding;
+		text-align: center;
+		opacity: 0;
+		@include transform(rotateX(180deg));
+
+		.avatar {
+			height: 150px;
+			width: 150px;
+			border: 5px solid #FFF;
+			margin: 30px auto 40px auto;
+			display: block;
+			@include border-radius(1000px);
+		}
+
+		.welcome {
+			font-size: 22px;
+			margin-bottom: 40px;
+		}
+	}
 
 	.input-row {
 		margin: 0 0 30px;
@@ -65,7 +110,7 @@ $global-radius: 3px;
 		width: 100%;
 		@include border-radius($global-radius);
 
-		&:focus {
+		&:focus, &.focus {
 			@include box-shadow(0 0 0 2px #D14F7E);
 		}
 	}
@@ -73,7 +118,8 @@ $global-radius: 3px;
 	.button {
 		height: 50px;
 		line-height: 50px;
-		padding: 0;
+		padding:  0 20px;
+		margin: 0;
 		text-align: center;
 		color: #FFF;
 		border: 0;
@@ -81,12 +127,45 @@ $global-radius: 3px;
 		width: 100%;
 		outline: none;
 		cursor: pointer;
+		overflow: hidden;
+		font-size: 17px;
 		@include border-radius($global-radius);
 		@include background-image(linear-gradient(bottom, #C03D6C, #D14F7E));
 
 		&:active, &.active {
 			@include background-image(linear-gradient(bottom, #D14F7E, #C03D6C));
 			//@include box-shadow(inset 0 5px 20px rgba(0, 0, 0, 0.2));
+		}
+
+		&.inline {
+			width: auto;
+			display: inline-block;
+		}
+
+		.loading {
+			position: absolute;
+			top: -50px;
+			left: 0;
+			right: 0;
+			height: 100%;
+			text-align: center;
+			line-height: 50px;
+			opacity: 0;
+		}
+
+		span {
+			@include transition-duration(.3s);
+		}
+
+		&.loading {
+			.default {
+				@include transform(translateY(50px));
+				opacity: 0;
+			}
+			.loading {
+				@include transform(translateY(50px));
+				opacity: 1;
+			}
 		}
 	}
 }
@@ -122,11 +201,11 @@ $fadeInDelay: 1.5s;
 		height: 150px;
 	}
 	75% {
-		height: 310px;
+		height: 350px;
 		width: 300px;
 	}
 	100% {
-		width: 500px;
+		width: 450px;
 	}
 }
 
