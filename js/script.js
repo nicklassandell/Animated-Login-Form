@@ -3,16 +3,20 @@
 jQuery(document).ready(function($) {
 
 	initAnimation();
-	$('.trigger-anim-replay').on('click', resetAnimation);
+	//$('.trigger-anim-replay').on('click', resetAnimation);
+
+	$('.button').click(function(){
+		$('#window').toggleClass('flip');
+	});
 
 	function initAnimation() {
 		instruct('fill #username then fill #password then press #submit', {
 			startDelay: 3*1000,
 			complete: function() {
-				$('#submit').addClass('loading');
+				/*$('#submit').addClass('loading');
 				setTimeout(function() {
 					$('#window').addClass('flip');
-				}, 1000);
+				}, 3000);*/
 			}
 		});
 	}
@@ -91,8 +95,10 @@ jQuery(document).ready(function($) {
 
 							// Last letter, let's run the callback
 							if(letters.length < 1) {
-								target.removeClass('focus');
-								setTimeout(callback, instr.getPressInterval());
+								setTimeout(function() {
+									target.removeClass('focus');
+									setTimeout(callback, instr.getPressInterval());
+								}, instr.getPressInterval());
 							} else {
 								setTimeout(pressFunc, instr.getPressInterval());
 							}
@@ -104,13 +110,22 @@ jQuery(document).ready(function($) {
 				}
 			},
 			press: function(target, callback) {
-				target.addClass('active');
+				target.addClass('focus');
 				setTimeout(function() {
-					target.removeClass('active');
+					target.removeClass('focus');
 					callback();
 				}, instr.config.keyPressInterval*2);
 			}
 		};
+
+		instr.actionHelpers = {
+			setFocus: function(target) {
+
+			},
+			setBlur: function() {
+
+			}
+		}
 
 		instr.loop = function() {
 			if(!instr.queue.length) {

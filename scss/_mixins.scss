@@ -10,3 +10,21 @@
         @content;
     }
 }
+
+@mixin animation($content) {
+	-webkit-animation: $content;
+	-moz-animation: $content;
+	animation: $content;
+}
+
+@mixin animation-delay($content) {
+    -webkit-animation-delay: $content;
+    -moz-animation-delay: $content;
+    animation-delay: $content;
+}
+
+@mixin animation-timing-function($content) {
+    -webkit-animation-timing-function: $content;
+    -moz-animation-timing-function: $content;
+    animation-timing-function: $content;
+}
