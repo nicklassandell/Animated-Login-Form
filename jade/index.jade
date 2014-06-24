@@ -8,10 +8,10 @@ html(lang='en')
 			.front
 				.input-row
 					label.label.fadeIn Username
-					input.input.fadeIn.delay1#username(type="text" data-fill="pineapple")
+					input.input.fadeIn.delay1#username(type="text" data-fyll="pineapple")
 				.input-row
 					label.label.fadeIn.delay2 Password
-					input.input.fadeIn.delay3#password(type="password" data-fill="hackmeplease")
+					input.input.fadeIn.delay3#password(type="password" data-fyll="hackmeplease")
 				.input-row.perspective
 					button.button.load-btn.fadeIn.delay4#submit
 						span.default Login
@@ -27,4 +27,5 @@ html(lang='en')
 					button.button.inline.trigger-anim-replay Replay animation
 
 		script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js')
+		script(src='js/fyll.js')
 		script(src='js/script.js')

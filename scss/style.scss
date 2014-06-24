@@ -123,7 +123,7 @@ $color-pink: #D85C89;
 		@include border-radius($global-radius);
 		@include transition-duration($global-transition-duration);
 
-		&:focus, &.focus {
+		&:focus, &.fyll-focus {
 			@include box-shadow(0 0 0 3px $color-pink);
 		}
 	}
@@ -149,7 +149,7 @@ $color-pink: #D85C89;
 		@include transform-style(preserve-3d);
 		@include transform-origin(bottom);
 
-		&:active, &.focus {
+		&:active, &.fyll-focus {
 			@include background-image(linear-gradient(bottom, #D85C89, #D85C89));
 			@include transform(rotateX(20deg));
 		}
@@ -230,7 +230,7 @@ $color-pink: #D85C89;
 	0% {
 		@include transform(scale(0) rotateX(360deg));
 		height: 150px;
-		width: 300px;
+		width: 150px;
 	}
 	50% {
 		@include transform(none);
@@ -238,7 +238,7 @@ $color-pink: #D85C89;
 	}
 	75% {
 		height: 350px;
-		width: 300px;
+		width: 150px;
 	}
 	100% {
 		width: 450px;
