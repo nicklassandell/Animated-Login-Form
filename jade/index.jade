@@ -5,27 +5,28 @@ html(lang='en')
 		link(rel='stylesheet' type='text/css' media='all' href='css/style.css')
 	body
 		#window
-			.front
-				.input-row
-					label.label.fadeIn Username
-					input.input.fadeIn.delay1#username(type="text" data-fyll="pineapple")
-				.input-row
-					label.label.fadeIn.delay2 Password
-					input.input.fadeIn.delay3#password(type="password" data-fyll="hackmeplease")
-				.input-row.perspective
-					button.button.load-btn.fadeIn.delay4#submit
-						span.default Login
-						.loading
-							.ball
-							.ball
-							.ball
-
-			.back
-				img.avatar(src="img/avatar.jpg")
-				p.welcome Welcome back, Dog!
-				.perspective
-					button.button.inline.trigger-anim-replay Replay animation
+			.page.page-front
+				.page-content
+					.input-row
+						label.label.fadeIn Username
+						input.input.fadeIn.delay1#username(type="text" data-fyll="pineapple")
+					.input-row
+						label.label.fadeIn.delay2 Password
+						input.input.fadeIn.delay3#password(type="password" data-fyll="hackmeplease")
+					.input-row.perspective
+						button.button.load-btn.fadeIn.delay4#submit
+							span.default Login
+							.loading
+								.ball
+								.ball
+								.ball
+			.page.page-back
+				.page-content
+					img.avatar(src="img/avatar.jpg")
+					p.welcome Welcome back, Dog!
+					.perspective
+						button.button.inline.trigger-anim-replay Replay animation
 
 		script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js')
-		script(src='https://raw.githubusercontent.com/nicklassandell/Fyll.js/master/fyll.js')
+		script(src='https://rawgit.com/nicklassandell/Fyll.js/master/fyll.js')
 		script(src='js/script.js')

@@ -37,42 +37,58 @@ $color-pink: #D85C89;
 	height: 350px;
 	width: 450px;
 	color: #FFF;
-	@include animation(#{$window-anim-dur} window ease-in-out);
-	@include transition-duration(1s);
+	@include animation(#{$window-anim-dur} window ease-in-out backwards);
 	@include transform-style(preserve-3d);
 
-	@include background-image(linear-gradient(bottom, #444, #333));
-	@include border-radius($global-radius*2);
+	&, .page, .page-content {
+		@include transition-duration(1s);
+	}
 
 	&.flip {
 		height: 460px;
 		width: 350px;
-		@include transform(rotateX(180deg));
+		
+		.page-front {
+			@include transform(rotateX(180deg));
+		}
+		.page-back {
+			@include transform(rotateX(360deg));
 
-		.back {
-			opacity: 1;
+			.page-content {
+				opacity: 1;
+			}
 		}
 	}
 
-	.front, .back {
-		@include backface-visibility(hidden);
-		padding: $window-padding;
-	}
-	.front {
-		@include transform(translateZ(0)); // To enable backface-visibility
-	}
-	.back {
+	.page {
 		position: absolute;
 		top: 0;
 		left: 0;
 		right: 0;
 		bottom: 0;
+		overflow: hidden;
+
+		@include transform-style(preserve-3d);
+		@include backface-visibility(hidden);
+		@include transform(translateZ(0)); // To enable backface-visibility
+
+		@include background-image(linear-gradient(bottom, #444, #333));
+		@include border-radius($global-radius*2);
+		padding: $window-padding;
+	}
+	.page-front {
+		
+	}
+	.page-back {
 		text-align: center;
-		opacity: 0;
 		@include transform(rotateX(180deg));
 
 		@include background-image(linear-gradient(bottom, #444, #333));
 		@include border-radius($global-radius*2);
+
+		.page-content {
+			opacity: 0;
+		}
 
 		.avatar {
 			height: 150px;
@@ -148,6 +164,8 @@ $color-pink: #D85C89;
 		@include transition-duration(.1s);
 		@include transform-style(preserve-3d);
 		@include transform-origin(bottom);
+		@include transform(translateZ(0));
+		@include backface-visibility(hidden);
 
 		&:active, &.fyll-focus {
 			@include background-image(linear-gradient(bottom, #D85C89, #D85C89));
@@ -181,6 +199,7 @@ $color-pink: #D85C89;
 					@include border-radius(1000px);
 					@include animation(ballBounce .3s alternate infinite);
 					@include animation-timing-function(cubic-bezier(.2, .4, .3, 1));
+					@include transition-duration(.3s);
 	  
 					&:nth-child(2n) {
 						@include animation-delay(.05s);
@@ -193,6 +212,12 @@ $color-pink: #D85C89;
 					&:last-child {
 						margin-right: 0;
 					}
+				}
+			}
+
+			&.done {
+				.ball {
+					opacity: 0;
 				}
 			}
 

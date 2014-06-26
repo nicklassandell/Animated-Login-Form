@@ -5,18 +5,12 @@ jQuery(document).ready(function($) {
 	initAnimation();
 	$('.trigger-anim-replay').on('click', resetAnimation);
 
-	/*
-	$('.button').click(function(){
-		$('#window').toggleClass('flip');
-	});
-	*/
-
 	function initAnimation() {
 		setTimeout(function() {
 			fyll.go('fill username then fill password then click submit', function() {
 				$('#submit').addClass('loading');
 				setTimeout(function() {
-					$('#window').addClass('flip');
+					$('#submit').addClass('done').closest('#window').addClass('flip');
 				}, 1500);
 			});
 		}, 3*1000);
@@ -30,8 +24,8 @@ jQuery(document).ready(function($) {
 		win.removeClass('flip');
 		win.before(win.clone(true)).remove();
 
-		// Reset loading state on buttons
-		$('.button.loading').removeClass('loading');
+		// Reset loading buttons
+		$('.load-btn.loading').removeClass('loading done');
 
 		// Restart animation
 		initAnimation();
