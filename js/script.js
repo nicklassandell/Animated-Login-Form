@@ -2,8 +2,12 @@
 
 jQuery(document).ready(function($) {
 
-	initAnimation();
+	// Display window (and start animation) when document is ready
+	// This mininizes the risk of firefox messing up
+	$('#window').attr('style', '');
 
+
+	initAnimation();
 	$(document).on('click', '.trigger-anim-replay', resetAnimation);
 
 	function initAnimation() {
