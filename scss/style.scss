@@ -39,6 +39,7 @@ $color-pink: #D85C89;
 	color: #FFF;
 	@include animation(#{$window-anim-dur} window ease-in-out backwards);
 	@include transform-style(preserve-3d);
+	@include transition-property(height width);
 
 	&, .page, .page-content {
 		@include transition-duration(1s);
@@ -166,6 +167,11 @@ $color-pink: #D85C89;
 		@include transform-origin(bottom);
 		@include transform(translateZ(0));
 		@include backface-visibility(hidden);
+	
+		// Icon
+		i {
+			margin-right: 10px;
+		}
 
 		&:active, &.fyll-focus {
 			@include background-image(linear-gradient(bottom, #D85C89, #D85C89));
