@@ -3,7 +3,8 @@
 jQuery(document).ready(function($) {
 
 	initAnimation();
-	$('.trigger-anim-replay').on('click', resetAnimation);
+
+	$(document).on('click', '.trigger-anim-replay', resetAnimation);
 
 	function initAnimation() {
 		setTimeout(function() {
@@ -19,16 +20,20 @@ jQuery(document).ready(function($) {
 	function resetAnimation() {
 		var win = $('#window');
 
-		// Clone and re-create window element
-		// to trigger animation restart
-		win.removeClass('flip');
-		win.before(win.clone(true)).remove();
+		win.stop().fadeOut(500, function() {
 
-		// Reset loading buttons
-		$('.load-btn.loading').removeClass('loading done');
+			// Reset things
+			win.attr('style', '');
+			win.find('input[type=text], input[type=password]').val('');
+			win.find('.load-btn.loading').removeClass('loading done');
 
-		// Restart animation
-		initAnimation();
+			// Clone and re-create window element to trigger animation restart
+			win.removeClass('flip');
+			win.before(win.clone(true)).remove();
+
+			// Restart animation
+			initAnimation();
+		});
 	}
 
 });
