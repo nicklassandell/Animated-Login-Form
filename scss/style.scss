@@ -184,10 +184,10 @@ $color-pink: #D85C89;
 		}
 
 		&.load-btn {
-			.default, .loading {
+			.default, .load-state {
 				@include transition-duration($global-transition-duration);
 			}
-			.loading {
+			.load-state {
 				position: absolute;
 				top: -50px;
 				left: 0;
@@ -195,6 +195,7 @@ $color-pink: #D85C89;
 				height: 100%;
 				text-align: center;
 				line-height: 50px;
+				pointer-events: none;
 
 				.ball {
 					height: 10px;
@@ -232,7 +233,7 @@ $color-pink: #D85C89;
 					@include transform(translateY(50px));
 					opacity: 0;
 				}
-				.loading {
+				.load-state {
 					@include transform(translateY(50px));
 				}
 			}
