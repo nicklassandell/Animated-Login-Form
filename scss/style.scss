@@ -25,6 +25,8 @@ $global-transition-duration: .2s;
 $window-padding: 60px;
 $window-anim-dur: 1.5s;
 
+$global-overflow-timing-function: cubic-bezier(0.015, 0.695, 0.340, 1.365);
+
 $color-pink: #D85C89;
 
 #window {
@@ -57,6 +59,22 @@ $color-pink: #D85C89;
 
 			.page-content {
 				opacity: 1;
+			}
+
+			.avatar, .welcome, .perspective {
+				opacity: 1;
+				@include transform(none);
+				@include transition-duration($global-transition-duration*3);
+			}
+
+			.avatar {
+				@include transition-delay(.8s);
+			}
+			.welcome {
+				@include transition-delay(.8s);
+			}
+			.perspective {
+				@include transition-delay(.9s);
 			}
 		}
 	}
@@ -95,12 +113,19 @@ $color-pink: #D85C89;
 			border: 5px solid #FFF;
 			margin: 30px auto 40px auto;
 			display: block;
+			opacity: 0;
+			@include transform(scale(.1));
 			@include border-radius(1000px);
 		}
 
 		.welcome {
 			font-size: 22px;
 			margin-bottom: 40px;
+		}
+
+		.welcome, .perspective {
+			opacity: 0;
+			@include transform(translateY(-30px));
 		}
 	}
 
@@ -241,7 +266,7 @@ $color-pink: #D85C89;
 	}
 }
 .fadeIn {
-	@include animation(1s fadeIn cubic-bezier(0.015, 0.695, 0.340, 1.365) backwards);
+	@include animation(1s fadeIn $global-overflow-timing-function backwards);
 	@include animation-delay($window-anim-dur);
 }
 .delay1 {
@@ -280,7 +305,7 @@ $color-pink: #D85C89;
 @include keyframes(fadeIn) {
 	0% {
 		opacity: 0;
-		@include transform(translateY(20px));
+		@include transform(translateY(30px));
 	}
 	100% {
 		opacity: 1;
