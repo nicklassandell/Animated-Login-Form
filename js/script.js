@@ -12,7 +12,6 @@ jQuery(document).ready(function($) {
 	// This mininizes the risk of firefox messing up
 	$('#window').attr('style', '');
 
-
 	initAnimation();
 	$(document).on('click', '.trigger-anim-replay', resetAnimation);
 
