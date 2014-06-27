@@ -265,6 +265,30 @@ $color-pink: #D85C89;
 		}
 	}
 }
+
+.browser-warning {
+	background: rgba(0, 0, 0, 0.7);
+	padding: 15px 0;
+	color: #FFF;
+	position: absolute;
+	top: 50px;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 530px;
+	text-align: center;
+	@include border-radius($global-radius);
+	@include transition-duration(.5s);
+	@include transition-timing-function($global-overflow-timing-function);
+
+	&.hidden {
+		opacity: 0;
+		@include transform(scale(0.2));
+	}
+}
+
+
+
 .fadeIn {
 	@include animation(1s fadeIn $global-overflow-timing-function backwards);
 	@include animation-delay($window-anim-dur);

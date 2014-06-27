@@ -2,6 +2,14 @@
 
 jQuery(document).ready(function($) {
 
+	// If firefox
+	if(navigator.userAgent.toLowerCase().match(/firefox/)) {
+		$('.browser-warning').removeClass('hidden');
+		setTimeout(function() {
+			$('.browser-warning').addClass('hidden');
+		}, 6*1000);
+	}
+
 	// Display window (and start animation) when document is ready
 	// This mininizes the risk of firefox messing up
 	$('#window').attr('style', '');
